@@ -11,16 +11,30 @@
 #include "kheap.h"
 #include "interrupts.h"
 
-void plotFilledSquare(int x, int y, int size)
+void plotBorder(int color)
 {
-    for (size_t i = 0; i < size; i++)
+    // Top and bottom
+    plotLine(5, 5, 315, 5, color);
+    plotLine(5, 195, 315, 5, color);
+    // Left and right
+    for (size_t i = 6; i < 195; i++)
     {
-        plotLine(x, y+i, x+size, y+i);
+        plotLine(5, i, 6, 5, color);
+        plotLine(314, i, 315, 5, color);
     }
     
 }
 
-void plotLine(int x0, int y0, int x1, int y1)
+void plotFilledSquare(int x, int y, int size, int color)
+{
+    for (size_t i = 0; i < size; i++)
+    {
+        plotLine(x, y+i, x+size, y+i, color);
+    }
+    
+}
+
+void plotLine(int x0, int y0, int x1, int y1, int color)
 {
     int dx = x1 - x0;
     int dy = y1 - y0;
@@ -29,7 +43,7 @@ void plotLine(int x0, int y0, int x1, int y1)
 
     for (size_t x=x0; x!=x1; x++)
     {
-        putpixel(x, y, 118);
+        putpixel(x, y, color);
         if (D > 0)
         {
             y++;
@@ -43,8 +57,9 @@ int main()
 {
 
     clear();
-    plotLine(10, 10, 310, 10);
-    plotFilledSquare(20, 20, 60);
+
+    plotBorder(100);
+    plotFilledSquare(20, 20, 10, 118);
     
     // Initialise the heap.
     kheap_init();
