@@ -1,0 +1,7 @@
+/cmake-build-debug/
+.idea/
+.vscode/
+/bin/
+/build/
+!./bin/os.bin
+.DS_Store
