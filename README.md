@@ -4,4 +4,4 @@
 
 SnakeOS boots a small homemade 32-bit operating system (Stripped version of SimpleOS) and runs the classic game of snake.
 
-No libraries, just pushing bytes to the framebuffer, and handling keyboard interrupts to play the game.
+No libraries, using mode 13h, 320x200, to access the VGA in a linear fashion.

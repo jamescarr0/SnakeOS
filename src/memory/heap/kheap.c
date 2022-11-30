@@ -12,6 +12,7 @@
 #include "heap.h"
 #include "stdio.h"
 #include "memory.h"
+#include "status.h"
 
 heap_t kernel_heap;
 heap_table_t kernel_heap_table;
@@ -33,8 +34,8 @@ void kheap_init()
 
     int res = heap_create(&kernel_heap, (void *) KERNEL_HEAP_ADDRESS, heap_end, &kernel_heap_table);
     if (res < 0) 
-    {
-        print("Kernel Panic TODO: Failed to init and create heap!\n", red);
+    {   // TODO: Do something when heap cannot be created.
+        return(-ENOMEM);
     }
 }
 

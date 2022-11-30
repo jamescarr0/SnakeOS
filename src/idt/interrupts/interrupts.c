@@ -11,10 +11,10 @@
  *
  */
 
-#include "stdio.h"
 #include "io.h"
 #include "interrupts.h"
 #include "pic.h"
+#include "status.h"
 
 // Default interrupt handler when no ISR is assigned to a IRQ
 void no_interrupt_handler(void)
@@ -24,15 +24,12 @@ void no_interrupt_handler(void)
 
 // ISR 0, Divide by zero definition
 void isr_zero()
-{
-    print("Error: Divide By Zero\n", red);
-    for (;;)
-        ;
+{   
+    return(-EDBZ);
 }
 
 // 0x21 : Keyboard Interrupt handler
 void int_handler_21(void)
 {
-    print("Keyboard interrupt triggered\n", green);
     PIC_send_EOI(IRQ_KEYBOARD);
 }

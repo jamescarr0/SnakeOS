@@ -11,6 +11,40 @@
 #include "kheap.h"
 #include "interrupts.h"
 
+void plotBorder(int color);
+void plotFilledSquare(int x, int y, int size, int color);
+void plotLine(int x0, int y0, int x1, int y1, int color);
+
+void sleep() { for (size_t i = 0; i < 10000000; i++){;}}
+
+int main()
+{
+    // TODO: Refactor.
+    
+    // Initialise the heap.
+    kheap_init();
+
+    // Initialize the IDT.
+    idt_init();
+
+    // Enable interrupts.
+    enable_interrupts();
+
+    // Driver code testing animation.
+    init_video();
+    int y = 6;
+    while(1) {
+        plotBorder(100);
+        plotFilledSquare(155, y++, 10, 118);
+        blit();
+        if(y==184) { y = 6;}
+
+        sleep(); // Quick dirty waste clock cycles to add a delay
+    }
+    
+    return 0;
+}
+
 void plotBorder(int color)
 {
     // Top and bottom
@@ -51,27 +85,4 @@ void plotLine(int x0, int y0, int x1, int y1, int color)
         }
         D = D + (2 * dy);
     }
-}
-
-int main()
-{
-
-    clear();
-
-    plotBorder(100);
-    plotFilledSquare(20, 20, 10, 118);
-    
-    // Initialise the heap.
-    kheap_init();
-
-    // Initialize the IDT.
-    idt_init();
-
-    // Enable interrupts.
-    enable_interrupts();
-
-    while (1)
-        ;
-
-    return 0;
 }

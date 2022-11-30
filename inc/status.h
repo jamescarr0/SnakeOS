@@ -16,5 +16,6 @@
 #define ENOMEM 3
 #define EBADPATH 4
 #define EINVDSK 5
+#define EDBZ 6
 
 #endif
