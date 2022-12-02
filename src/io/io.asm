@@ -20,9 +20,6 @@
 ;   
 ; https://c9x.me/x86/html/file_module_x86_id_139.html
 
-; !! ROUTINES NOT CURRENTLY IN USE, ABSTRACTED IN C !!
-; Functions can be found in io.c & io.h
-
 section .asm
 
 global insb

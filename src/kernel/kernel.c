@@ -6,7 +6,7 @@
  * @date 19/02/2002
  */
 
-#include "stdio.h"
+#include "term.h"
 #include "idt.h"
 #include "kheap.h"
 #include "interrupts.h"
@@ -16,6 +16,12 @@ void plotFilledSquare(int x, int y, int size, int color);
 void plotLine(int x0, int y0, int x1, int y1, int color);
 
 void sleep() { for (size_t i = 0; i < 10000000; i++){;}}
+
+enum XYDir_t {up, down, left, right};
+struct Game {
+    enum XYDir_t snake_direction;
+};
+struct Game game;
 
 int main()
 {
@@ -32,12 +38,27 @@ int main()
 
     // Driver code testing animation.
     init_video();
+
+    game.snake_direction = up;
     int y = 6;
+    plotBorder(100);
+    plotFilledSquare(155, y++, 10, 118);
+
     while(1) {
         plotBorder(100);
-        plotFilledSquare(155, y++, 10, 118);
+        if(game.snake_direction == up) {
+            plotFilledSquare(155, y--, 10, 118);
+        }
+        if(game.snake_direction == down) {
+            plotFilledSquare(155, y++, 10, 118);
+        }
         blit();
-        if(y==184) { y = 6;}
+        if(y > 184) {
+            game.snake_direction=up;
+        }
+        if(y < 6) {
+            game.snake_direction=down;
+        }
 
         sleep(); // Quick dirty waste clock cycles to add a delay
     }

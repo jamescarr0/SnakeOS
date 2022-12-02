@@ -14,7 +14,17 @@
 #include "io.h"
 #include "interrupts.h"
 #include "pic.h"
-#include "status.h"
+
+#define KEY_PRESS_UP 0x48
+#define KEY_PRESS_DOWN 0x50
+#define KEY_PRESS_LEFT 0x4B
+#define KEY_PRESS_RIGHT 0x4D
+
+enum XYDir_t {up, down, left, right};
+struct Game {
+    enum XYDir_t snake_direction;
+};
+extern struct Game game;
 
 // Default interrupt handler when no ISR is assigned to a IRQ
 void no_interrupt_handler(void)
@@ -24,12 +34,26 @@ void no_interrupt_handler(void)
 
 // ISR 0, Divide by zero definition
 void isr_zero()
-{   
-    return(-EDBZ);
+{
+    // TODO: Do something with divide by zero error.
+    while(1);
 }
 
 // 0x21 : Keyboard Interrupt handler
 void int_handler_21(void)
 {
+    uint8_t key_code = insb(0x60);
+    switch (key_code) {
+        case KEY_PRESS_UP:
+            game.snake_direction = up;
+            break;
+        case KEY_PRESS_DOWN:
+            game.snake_direction = down;
+            break;
+        case KEY_PRESS_LEFT:
+        case KEY_PRESS_RIGHT:
+        default:
+            ;
+    }
     PIC_send_EOI(IRQ_KEYBOARD);
 }

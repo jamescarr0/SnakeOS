@@ -10,7 +10,7 @@
 
 #include "kheap.h"
 #include "heap.h"
-#include "stdio.h"
+#include "term.h"
 #include "memory.h"
 #include "status.h"
 

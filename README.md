@@ -7,10 +7,11 @@ SnakeOS boots a small homemade 32-bit operating system (Stripped version of Simp
 No libraries, using mode 13h, 320x200, to access the VGA in a linear fashion.
 
 Status: work in progress.
-    - Draw border.
-    - Draw square
-    - Double buffering (copy from offscreen buffer to video buffer)
-    - blit
-    - Square travels down the screen.
+* [x] Draw border 
+* [x] Draw square 
+* [x] Double buffering (copy from offscreen buffer to video buffer)
+* [x] blit 
+* [x] Square travels up and down.
+* [x] Keyboard interrupt handles up and down arrow key presses and changes direction accordingly. 
 
 ![qemu screenshot](QEMU-screenshot.png)

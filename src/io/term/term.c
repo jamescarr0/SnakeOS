@@ -1,5 +1,5 @@
 /**
- * @file stdio.c
+ * @file term.c
  * @author James Carr
  * @brief Function definitions for standard input output.
  * @version 0.1
@@ -10,7 +10,7 @@
 
 #include <stdint.h>
 #include "strings.h"
-#include "stdio.h"
+#include "term.h"
 #include "memory.h"
 
 struct Screen_s

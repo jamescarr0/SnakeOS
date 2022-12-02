@@ -17,7 +17,7 @@ C_SRC = $(shell find $(SRCDIR) -name "*.c" | grep -v ./kernel)
 C_OBJS := $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.c.o, $(C_SRC))
 ASM_OBJS := $(patsubst $(SRCDIR)/%.asm, $(OBJDIR)/%.asm.o, $(ASM_SRC))
 
-default: $(ASM_OBJS) $(C_OBJS) boot kernelbin os
+all: $(ASM_OBJS) $(C_OBJS) boot kernelbin os
 
 $(OBJDIR)/%.asm.o : $(SRCDIR)/%.asm
 	@ echo !==== COMPILING ASM SRC:
@@ -59,7 +59,7 @@ os:
 
 	dd if=/dev/zero bs=512 count=100 >> ./bin/os.bin
 
-run: default
+run: all
 	qemu-system-i386 -hda ./bin/os.bin
 
 debug: ./bin/os.bin
