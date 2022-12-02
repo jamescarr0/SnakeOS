@@ -11,12 +11,14 @@
 #include "kheap.h"
 #include "interrupts.h"
 
+void sleep() { for (size_t i = 0; i < 10000000; i++){;}} // Todo: Look into/implement PIT.
+
+// Todo: Refactor pixel/drawing functions.
 void plotBorder(int color);
 void plotFilledSquare(int x, int y, int size, int color);
 void plotLine(int x0, int y0, int x1, int y1, int color);
 
-void sleep() { for (size_t i = 0; i < 10000000; i++){;}}
-
+// Todo: Refactor Game.
 enum XYDir_t {up, down, left, right};
 struct Game {
     enum XYDir_t snake_direction;
@@ -25,8 +27,6 @@ struct Game game;
 
 int main()
 {
-    // TODO: Refactor.
-    
     // Initialise the heap.
     kheap_init();
 
@@ -40,7 +40,7 @@ int main()
     init_video();
 
     game.snake_direction = up;
-    int y = 6;
+    int y = 90;
     plotBorder(100);
     plotFilledSquare(155, y++, 10, 118);
 
@@ -60,7 +60,7 @@ int main()
             game.snake_direction=down;
         }
 
-        sleep(); // Quick dirty waste clock cycles to add a delay
+        sleep();
     }
     
     return 0;

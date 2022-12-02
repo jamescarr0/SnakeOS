@@ -13,11 +13,6 @@
 #include "term.h"
 #include "memory.h"
 
-struct Screen_s
-{
-    volatile uint8_t *framebuffer;
-    volatile uint8_t *backbuffer;
-};
 
 static struct Screen_s screen = {
     .framebuffer = (volatile uint8_t *)0xA0000,
@@ -38,7 +33,7 @@ void blit()
     }
 }
 
-void putpixel(int pos_x, int pos_y, unsigned char VGA_COLOR)
+void putpixel(int pos_x, int pos_y, unsigned char vga_color)
 {
-    screen.backbuffer[320 * pos_y + pos_x] = VGA_COLOR;
+    screen.backbuffer[320 * pos_y + pos_x] = vga_color;
 }
