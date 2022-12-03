@@ -51,7 +51,11 @@ void int_handler_21(void)
             game.snake_direction = down;
             break;
         case KEY_PRESS_LEFT:
+            game.snake_direction = left;
+            break;
         case KEY_PRESS_RIGHT:
+            game.snake_direction = right;
+            break;
         default:
             ;
     }

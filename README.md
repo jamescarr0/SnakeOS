@@ -12,6 +12,6 @@ Status: work in progress.
 * [x] Double buffering (copy from offscreen buffer to video buffer)
 * [x] blit 
 * [x] Square travels up and down.
-* [x] Keyboard interrupt handles up and down arrow key presses and changes direction accordingly. 
+* [x] Keyboard interrupt handles up, down, left and right arrow key presses and changed direction of travel.
 
 ![qemu screenshot](QEMU-screenshot.png)

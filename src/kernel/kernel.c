@@ -39,27 +39,43 @@ int main()
     // Driver code testing animation.
     init_video();
 
+    // Set starting direction and position.
     game.snake_direction = up;
+    int x = 155;
     int y = 90;
+    
     plotBorder(100);
     plotFilledSquare(155, y++, 10, 118);
 
     while(1) {
         plotBorder(100);
-        if(game.snake_direction == up) {
-            plotFilledSquare(155, y--, 10, 118);
-        }
-        if(game.snake_direction == down) {
-            plotFilledSquare(155, y++, 10, 118);
-        }
-        blit();
-        if(y > 184) {
-            game.snake_direction=up;
-        }
-        if(y < 6) {
-            game.snake_direction=down;
+
+        // Basic movement of a square
+        switch (game.snake_direction)
+        {
+        case up:
+            plotFilledSquare(x, y--, 10, 118);
+            break;
+        case down:
+            plotFilledSquare(x, y++, 10, 118);
+            break;
+        case left:
+            plotFilledSquare(x--, y, 10, 118);
+            break;
+        case right:
+            plotFilledSquare(x++, y, 10, 118);
+            break;
+        default:
+            break;
         }
 
+        // Bounce sqauare off walls and reverse direction
+        if(y > 184) { game.snake_direction=up; }
+        if(y < 6) { game.snake_direction=down; }
+        if(x < 6) { game.snake_direction=right; }
+        if(x > 304) { game.snake_direction=left; }
+
+        blit();
         sleep();
     }
     
