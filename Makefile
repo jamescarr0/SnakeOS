@@ -5,7 +5,8 @@ NASM = nasm
 FLAGS = -g -ffreestanding -falign-jumps -falign-functions -falign-labels
 FLAGS += -falign-loops -fstrength-reduce -fomit-frame-pointer -fno-builtin
 FLAGS += -finline-functions -Wno-unused-label -Wno-cpp  -std=gnu99 -m32
-FLAGS += -Wno-unused-parameter -nostdlib -nostartfiles -nodefaultlibs -Wall -O0 -Iinc
+FLAGS += -Wno-unused-parameter -nostdlib -nostartfiles -nodefaultlibs -Wall -O0 
+FLAGS += -Iinc
 
 SRCDIR = src
 BUILDDIR = bin
