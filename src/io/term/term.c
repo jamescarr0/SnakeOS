@@ -12,10 +12,11 @@
 #include "strings.h"
 #include "term.h"
 #include "memory.h"
+#include "kheap.h"
 
 
 static struct Screen_s screen = {
-    .framebuffer = (volatile uint8_t *)0xA0000,
+    .framebuffer = (uint8_t *)0xA0000,
 };
 
 void init_video()

@@ -19,7 +19,7 @@
  * @brief Initialise the kernel heap.
  * 
  */
-void kheap_init();
+int kheap_init();
 
 /**
  * @brief Kernel space Malloc

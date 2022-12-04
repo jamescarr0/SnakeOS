@@ -18,7 +18,7 @@ heap_t kernel_heap;
 heap_table_t kernel_heap_table;
 
 // Create and initialise a kernel heap.
-void kheap_init()
+int kheap_init()
 {
     // Total Number of block entries the heap will manage. 
     // Eg.. 104857600 (100Mb stack) / 4096 (block size) = 25600 bytes
@@ -37,6 +37,7 @@ void kheap_init()
     {   // TODO: Do something when heap cannot be created.
         return(-ENOMEM);
     }
+    return 0;
 }
 
 // Allocate number of bytes for the kernel heap.

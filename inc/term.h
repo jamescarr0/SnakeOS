@@ -16,8 +16,8 @@
 
 struct Screen_s
 {
-    volatile uint8_t *framebuffer;
-    volatile uint8_t *backbuffer;
+    uint8_t *framebuffer;
+    uint8_t *backbuffer;
 };
 
 void init_video();
